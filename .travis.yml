@@ -18,3 +18,15 @@ after_success:
   - docker push alex0menshikov/testdocker2-server
   - docker push alex0menshikov/testdocker2-nginx
   - docker push alex0menshikov/testdocker2-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "test-docker2"
+  env: "TestDocker2-env"
+  bucket_name: "elasticbeanstalk-us-east-2-929379175951"
+  bucket_path: "test-docker2"
+  on:
+    branch:  master
+  access_key_id: "$AWS_ACCESS_KEY"
+  secret_access_key: "$AWS_SECRET_KEY"
